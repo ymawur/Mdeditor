@@ -1,0 +1,48 @@
+.article-content {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #0f172a;
+  font: 16px/1.7 Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+  line-height: 1.25;
+  margin-top: 1.8em;
+  margin-bottom: 0.6em;
+}
+
+.article-content blockquote {
+  border-left: 4px solid #cbd5e1;
+  padding: 0.25rem 1rem;
+  color: #475569;
+  background: #f8fafc;
+}
+
+.article-content pre {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.article-content code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.article-content th,
+.article-content td {
+  border: 1px solid #cbd5e1;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}

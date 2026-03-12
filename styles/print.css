@@ -1,0 +1,12 @@
+@media print {
+  .app-shell,
+  .pane-header,
+  textarea {
+    display: none !important;
+  }
+
+  .article-content {
+    max-width: none;
+    margin: 0;
+  }
+}
