@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import "katex/dist/katex.min.css";
 import "@/app/globals.css";
 
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
   description: "Markdown to HTML and PDF with math support"
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>{children}</body>

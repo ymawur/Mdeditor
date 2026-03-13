@@ -3,6 +3,9 @@ import { compileMarkdown } from "@/lib/compile-markdown";
 import { buildHtmlDocument } from "@/lib/build-document";
 import { renderPdfFromHtml } from "@/lib/pdf";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as { markdown?: string };

@@ -1,5 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
 
 let cachedKatexCss: string | null = null;
 
