@@ -1,5 +1,6 @@
 import { ARTICLE_CSS, PRINT_CSS } from "@/lib/document-styles";
-import { getKatexCss } from "@/lib/katex-css";
+
+const KATEX_CSS_CDN_URL = "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css";
 
 function escapeTitle(value: string): string {
   return value.replace(/[&<>\"]/g, (ch) => {
@@ -17,7 +18,7 @@ export function buildHtmlDocument(htmlFragment: string, title = "document"): str
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>${escapeTitle(title)}</title>
-    <style>${getKatexCss()}</style>
+    <link rel="stylesheet" href="${KATEX_CSS_CDN_URL}" />
     <style>${ARTICLE_CSS}</style>
     <style>${PRINT_CSS}</style>
   </head>
