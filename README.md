@@ -18,7 +18,7 @@ A production-minded MVP for writing Markdown, previewing rendered output live, a
 - TypeScript
 - Route Handlers (`app/api/*`)
 - `unified` + `remark-*` + `rehype-*`
-- `puppeteer-core` + `chrome-aws-lambda`
+- `puppeteer-core` + `@sparticuz/chromium` (with `chrome-aws-lambda` fallback)
 
 ## Install
 
@@ -56,7 +56,7 @@ npm run start
 2. Import the project in Vercel.
 3. Framework preset: **Next.js**.
 4. No extra server required; Route Handlers run as serverless functions.
-5. PDF generation uses `chrome-aws-lambda` + `puppeteer-core`, which is compatible with Vercel serverless constraints.
+5. PDF generation prefers `@sparticuz/chromium` + `puppeteer-core` on Vercel and can fallback to `chrome-aws-lambda`. You can also set `CHROMIUM_EXECUTABLE_PATH`/`PUPPETEER_EXECUTABLE_PATH` when providing your own binary path.
 
 If you need higher PDF throughput, consider moving PDF rendering to a dedicated queue/worker in a future iteration.
 
