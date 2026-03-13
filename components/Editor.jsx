@@ -5,7 +5,7 @@ import { SAMPLE_MARKDOWN } from "@/lib/sample-markdown";
 import { compileMarkdown } from "@/lib/compile-markdown";
 import { Preview } from "@/components/Preview";
 
-async function downloadFromApi(url: string, markdown: string, filename: string) {
+async function downloadFromApi(url, markdown, filename) {
   const response = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -15,7 +15,7 @@ async function downloadFromApi(url: string, markdown: string, filename: string) 
   if (!response.ok) {
     let message = `Request failed (${response.status})`;
     try {
-      const data = (await response.json()) as { error?: string };
+      const data = await response.json();
       if (data?.error) message = data.error;
     } catch {
       // No-op fallback to generic message.
@@ -37,8 +37,8 @@ async function downloadFromApi(url: string, markdown: string, filename: string) 
 export function Editor() {
   const [markdown, setMarkdown] = useState(SAMPLE_MARKDOWN);
   const [previewHtml, setPreviewHtml] = useState("");
-  const [previewError, setPreviewError] = useState<string | null>(null);
-  const [exportError, setExportError] = useState<string | null>(null);
+  const [previewError, setPreviewError] = useState(null);
+  const [exportError, setExportError] = useState(null);
   const [isPending, startTransition] = useTransition();
   const [isExportingHtml, setIsExportingHtml] = useState(false);
   const [isExportingPdf, setIsExportingPdf] = useState(false);
@@ -54,7 +54,7 @@ export function Editor() {
             setPreviewError(null);
           }
         })
-        .catch((error: unknown) => {
+        .catch((error) => {
           if (!cancelled) {
             setPreviewError(error instanceof Error ? error.message : "Failed to compile preview.");
           }
@@ -91,7 +91,7 @@ export function Editor() {
                   setIsExportingHtml(true);
                   try {
                     await downloadFromApi("/api/export-html", markdown, "document.html");
-                  } catch (error: unknown) {
+                  } catch (error) {
                     setExportError(error instanceof Error ? error.message : "Failed to export HTML.");
                   } finally {
                     setIsExportingHtml(false);
@@ -108,7 +108,7 @@ export function Editor() {
                   setIsExportingPdf(true);
                   try {
                     await downloadFromApi("/api/export-pdf", markdown, "document.pdf");
-                  } catch (error: unknown) {
+                  } catch (error) {
                     setExportError(error instanceof Error ? error.message : "Failed to export PDF.");
                   } finally {
                     setIsExportingPdf(false);

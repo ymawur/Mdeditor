@@ -15,10 +15,10 @@ A production-minded MVP for writing Markdown, previewing rendered output live, a
 ## Tech stack
 
 - Next.js 14 (App Router)
-- TypeScript
+- JavaScript
 - Route Handlers (`app/api/*`)
 - `unified` + `remark-*` + `rehype-*`
-- `puppeteer-core` + `chrome-aws-lambda`
+- `puppeteer`
 
 ## Install
 
@@ -56,20 +56,20 @@ npm run start
 2. Import the project in Vercel.
 3. Framework preset: **Next.js**.
 4. No extra server required; Route Handlers run as serverless functions.
-5. PDF generation uses `chrome-aws-lambda` + `puppeteer-core`, which is compatible with Vercel serverless constraints.
+5. PDF generation uses `puppeteer` in the route handler to render PDFs server-side.
 
 If you need higher PDF throughput, consider moving PDF rendering to a dedicated queue/worker in a future iteration.
 
 ## Project structure
 
-- `app/page.tsx` – page entry
-- `components/Editor.tsx` – editor UI + actions
-- `components/Preview.tsx` – HTML preview component
-- `app/api/export-html/route.ts` – HTML export route
-- `app/api/export-pdf/route.ts` – PDF export route
-- `lib/compile-markdown.ts` – shared Markdown->HTML fragment compiler
-- `lib/build-document.ts` – wraps HTML fragment into standalone document
-- `lib/pdf.ts` – server-side PDF rendering
+- `app/page.jsx` – page entry
+- `components/Editor.jsx` – editor UI + actions
+- `components/Preview.jsx` – HTML preview component
+- `app/api/export-html/route.js` – HTML export route
+- `app/api/export-pdf/route.js` – PDF export route
+- `lib/compile-markdown.js` – shared Markdown->HTML fragment compiler
+- `lib/build-document.js` – wraps HTML fragment into standalone document
+- `lib/pdf.js` – server-side PDF rendering
 - `styles/article.css` – article styling
 - `styles/print.css` – print-specific styling
 

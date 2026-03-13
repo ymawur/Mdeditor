@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 import { compileMarkdown } from "@/lib/compile-markdown";
 import { buildHtmlDocument } from "@/lib/build-document";
 
-export async function POST(request: Request) {
+export async function POST(request) {
   try {
-    const body = (await request.json()) as { markdown?: string };
+    const body = await request.json();
 
     if (typeof body.markdown !== "string") {
       return NextResponse.json({ error: "Invalid request body. Expected markdown string." }, { status: 400 });
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
         "Content-Disposition": "attachment; filename=\"document.html\""
       }
     });
-  } catch (error: unknown) {
+  } catch (error) {
     const message = error instanceof Error ? error.message : "Failed to export HTML.";
     return NextResponse.json({ error: message }, { status: 500 });
   }

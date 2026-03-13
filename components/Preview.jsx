@@ -1,8 +1,4 @@
-type PreviewProps = {
-  html: string;
-};
-
-export function Preview({ html }: PreviewProps) {
+export function Preview({ html }) {
   return (
     <article
       className="article-content"

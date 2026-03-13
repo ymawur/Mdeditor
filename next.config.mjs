@@ -1,8 +1,4 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    serverComponentsExternalPackages: ["chrome-aws-lambda", "puppeteer-core"]
-  }
-};
+/** @type {import("next").NextConfig} */
+const nextConfig = {};
 
 export default nextConfig;

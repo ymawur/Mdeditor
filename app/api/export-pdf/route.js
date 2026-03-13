@@ -6,9 +6,9 @@ import { renderPdfFromHtml } from "@/lib/pdf";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function POST(request: Request) {
+export async function POST(request) {
   try {
-    const body = (await request.json()) as { markdown?: string };
+    const body = await request.json();
 
     if (typeof body.markdown !== "string") {
       return NextResponse.json({ error: "Invalid request body. Expected markdown string." }, { status: 400 });
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
         "Content-Disposition": "attachment; filename=\"document.pdf\""
       }
     });
-  } catch (error: unknown) {
+  } catch (error) {
     const message = error instanceof Error ? error.message : "Failed to export PDF.";
     return NextResponse.json({ error: message }, { status: 500 });
   }
