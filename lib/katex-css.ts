@@ -8,7 +8,12 @@ export function getKatexCss(): string {
     return cachedKatexCss;
   }
 
-  const katexPath = require.resolve("katex/dist/katex.min.css");
-  cachedKatexCss = fs.readFileSync(path.resolve(katexPath), "utf8");
+  const resolvedKatexPath = require.resolve("katex/dist/katex.min.css");
+  const katexPath =
+    typeof resolvedKatexPath === "string"
+      ? resolvedKatexPath
+      : path.join(process.cwd(), "node_modules", "katex", "dist", "katex.min.css");
+
+  cachedKatexCss = fs.readFileSync(katexPath, "utf8");
   return cachedKatexCss;
 }
