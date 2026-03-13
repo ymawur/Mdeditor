@@ -14,8 +14,9 @@ export async function POST(request: Request) {
     const htmlFragment = await compileMarkdown(body.markdown);
     const fullHtml = buildHtmlDocument(htmlFragment, "markdown-export");
     const pdfBuffer = await renderPdfFromHtml(fullHtml);
+    const pdfBytes = Uint8Array.from(pdfBuffer);
 
-    return new NextResponse(pdfBuffer, {
+    return new Response(pdfBytes, {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
